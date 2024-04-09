@@ -43,6 +43,7 @@ export const Favorites = () => {
       numColumns={3}
       keyExtractor={item => item.id.toString()} 
       horizontal={false}
+      showsHorizontalScrollIndicator={false}
       contentContainerStyle={{gap:9,paddingHorizontal:20,alignItems:'center',marginTop:44}}
     />
 

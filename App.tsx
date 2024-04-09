@@ -27,9 +27,11 @@ export default function App() {
     <View style={styles.container}>
      <SafeAreaProvider>
       <SafeAreaView onLayout={onLayoutRootView}> 
-        {/* <HomeScreen/> */}
+        <View>
+        <HomeScreen/>
+        </View>
         {/* <Music/> */}
-        <Favorites/>
+        {/* <Favorites/> */}
         
         </SafeAreaView>
      </SafeAreaProvider>
@@ -44,4 +46,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bg,
   
   },
+
 });

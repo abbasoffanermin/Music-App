@@ -16,7 +16,7 @@ export const HomeScreen = () => {
 
   return (
   <View>
-  <ScrollView indicatorStyle="white"  keyboardShouldPersistTaps="handled" style={{ paddingHorizontal:20}}>
+  <ScrollView indicatorStyle="white" showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps="handled" style={{ paddingHorizontal:20}} >
        <View style={styles.container}>
        <Header right={<RingVector style={{width:30,height:30,marginTop:10}} color={Colors.grey}/>
 } left={<Avatar  url="https://lh6.googleusercontent.com/proxy/ZLGihPRfkkerdJBqfRKKFRWQcXDCfMMuuK_6_IDH6Mfhu0VI3Du2L9eOTiz0yKsIftOesQQnj0whQCZFudjFH-cXgBKnebrpknuWtjKkDcRC5Ik" name="Sarwar Jahan" content="Gold Member" />
@@ -48,9 +48,11 @@ export const HomeScreen = () => {
     <Card key={item.id} title={item.title} url={item.url} horizontal={true} size='s' content={item.content} desc={item.desc} />
   ))
 }
-
+<View>
+  <Navbar/>
+</View>
    
- <Navbar/>
+ 
     </ScrollView>
 
 
@@ -92,5 +94,6 @@ const styles = StyleSheet.create({
     marginTop:24,
     flexDirection:"row",
     alignItems:"center",
-  }
+  },
+
 })
