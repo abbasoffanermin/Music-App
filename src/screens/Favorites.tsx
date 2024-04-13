@@ -10,6 +10,13 @@ export const Favorites = () => {
   const renderItem = ({ item }:any) => (
     <Card item={true} size='l' key={item.id} url={item.url} horizontal={true} style={{ marginTop: 24}} />
   );
+  const renditem=( { item }:any) => (
+    
+      
+        <Card size='l' key={item.id}  url={item.url} horizontal={false} style={{marginTop:24}}/>
+      
+    
+  )
   return (
     <ScrollView>
 
@@ -27,18 +34,20 @@ export const Favorites = () => {
 
   <Text numberOfLines={1} style={styles.title}>Favourite Album</Text>
 
-<ScrollView horizontal contentContainerStyle={{gap:9,paddingHorizontal:20}}>
+{/* <ScrollView horizontal contentContainerStyle={{gap:9,paddingHorizontal:20}}>
 {
   Data.map((item)=>(
     <Card size='l' key={item.id}  url={item.url} horizontal={true} style={{marginTop:24}}/>
   ))
 }
-</ScrollView>
+</ScrollView> */}
+<FlashList renderItem={renditem} data={Data} estimatedItemSize={50} horizontal={true}/>
+
   <Text numberOfLines={1} style={[styles.title,{marginTop:44}]}>Favourite Music</Text>
     </View>
 
 
-    <View style={{height:'100%'}}>
+    <View style={{width:'100%',height:'100%'}}>
     <FlashList
       data={Data}
       estimatedItemSize={100}
