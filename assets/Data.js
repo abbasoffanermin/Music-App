@@ -43,5 +43,26 @@ exports.Data = [
         url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpObv8Ug-u4ahN4TUjer2yojpyHHYxQnC_MqpHmQjoDg&s',
         content: 'Admina Thembi',
         desc: '114k / steams'
-    }
+    },
+    {
+        id: 7,
+        title: 'The triangle',
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpObv8Ug-u4ahN4TUjer2yojpyHHYxQnC_MqpHmQjoDg&s',
+        content: 'Admina Thembi',
+        desc: '114k / steams'
+    },
+    {
+        id: 8,
+        title: 'The triangle',
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpObv8Ug-u4ahN4TUjer2yojpyHHYxQnC_MqpHmQjoDg&s',
+        content: 'Admina Thembi',
+        desc: '114k / steams'
+    },
+    {
+        id: 9,
+        title: 'The triangle',
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnXjYrCTNX5Rjsrky8v9bEkHPKJlWbVUxSprHtzI3_nQ&s',
+        content: 'Admina Thembi',
+        desc: '114k / steams'
+    },
 ];

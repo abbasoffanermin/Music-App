@@ -11,7 +11,7 @@ interface IHeader{
 }
 export const Header:React.FC<IHeader> = ( {left,title,right}) => {
   return (
-    <View style={[styles.container,title?{gap:0,justifyContent:'space-around'}:null]}>
+    <View style={[styles.container,title?{gap:5,justifyContent:'space-around'}:null]}>
         {left}
         {title?<Text style={styles.title}>{title}</Text>:null}
          <TouchableOpacity activeOpacity={0.6} hitSlop={12}>
@@ -25,10 +25,10 @@ export const Header:React.FC<IHeader> = ( {left,title,right}) => {
 
 const styles = StyleSheet.create({
     container:{
-        marginTop:18,
+        marginTop:20,
         flexDirection:"row",
         alignItems:"center",
-        gap:120,
+        gap:130,
         justifyContent:"space-between"
       },
       title:{

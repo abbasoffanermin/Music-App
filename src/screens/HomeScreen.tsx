@@ -73,12 +73,9 @@ const styles = StyleSheet.create({
   container:{
     flexDirection:"row",
     alignItems:"center",
-    
-   
     justifyContent:"space-between"
   },
   titleRecommend:{
-    marginTop:28,
     fontSize:18,
     fontWeight:"bold",
     color:Colors.secondary,

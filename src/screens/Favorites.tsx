@@ -5,9 +5,10 @@ import Left  from '../../assets/vectors/left.svg'
 import { Card } from '../components/Card'
 import { Colors } from '../../assets/colors/colors'
 import { Data } from '../../assets/Data'
+import { FlashList } from "@shopify/flash-list";
 export const Favorites = () => {
   const renderItem = ({ item }:any) => (
-    <Card item={true} size='l' key={item.id} url={item.url} horizontal={true} style={{ marginTop: 24 }} />
+    <Card item={true} size='l' key={item.id} url={item.url} horizontal={true} style={{ marginTop: 24}} />
   );
   return (
     <ScrollView>
@@ -37,15 +38,19 @@ export const Favorites = () => {
     </View>
 
 
-    <FlatList
+    <View style={{height:'100%'}}>
+    <FlashList
       data={Data}
+      estimatedItemSize={100}
       renderItem={renderItem}
       numColumns={3}
       keyExtractor={item => item.id.toString()} 
       horizontal={false}
+      scrollEnabled={true}
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{gap:9,paddingHorizontal:20,alignItems:'center',marginTop:44}}
+      contentContainerStyle={{paddingHorizontal:20}}
     />
+    </View>
 
 
     </ScrollView>

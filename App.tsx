@@ -27,12 +27,12 @@ export default function App() {
     <View style={styles.container}>
      <SafeAreaProvider>
       <SafeAreaView onLayout={onLayoutRootView}> 
-        <View>
-        <HomeScreen/>
         
-        </View>
+        {/* <HomeScreen/> */}
+        
+        
         {/* <Music/> */}
-        {/* <Favorites/> */}
+        <Favorites/>
         
         </SafeAreaView>
      </SafeAreaProvider>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.bg,
+    paddingHorizontal: 17,
   
   },
 

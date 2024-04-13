@@ -19,7 +19,8 @@
     "react-native-safe-area-context": "4.8.2",
     "react-native-scrollview-smart": "^0.1.5",
     "react-native-svg": "14.1.0",
-    "expo-navigation-bar": "~2.8.1"
+    "expo-navigation-bar": "~2.8.1",
+    "@shopify/flash-list": "1.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
