@@ -28,11 +28,11 @@ export default function App() {
      <SafeAreaProvider>
       <SafeAreaView onLayout={onLayoutRootView}> 
         
-        {/* <HomeScreen/> */}
+        <HomeScreen/>
         
         
         {/* <Music/> */}
-        <Favorites/>
+        {/* <Favorites/> */}
         
         </SafeAreaView>
      </SafeAreaProvider>
