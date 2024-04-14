@@ -8,6 +8,7 @@ import {HomeScreen} from './src/screens/HomeScreen';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Music } from './src/screens/Music';
 import { Favorites } from './src/screens/Favorites';
+
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
     'Nunito-Regular': require('./assets/fonts/Nunito-Regular.ttf'),
@@ -28,11 +29,11 @@ export default function App() {
      <SafeAreaProvider>
       <SafeAreaView onLayout={onLayoutRootView}> 
         
-        <HomeScreen/>
+        {/* <HomeScreen/> */}
         
         
         {/* <Music/> */}
-        {/* <Favorites/> */}
+        <Favorites/>
         
         </SafeAreaView>
      </SafeAreaProvider>

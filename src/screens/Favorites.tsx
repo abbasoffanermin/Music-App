@@ -1,5 +1,5 @@
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Header } from '../components/Header'
 import Left  from '../../assets/vectors/left.svg'
 import { Card } from '../components/Card'
@@ -7,20 +7,43 @@ import { Colors } from '../../assets/colors/colors'
 import { Data } from '../../assets/Data'
 import { FlashList } from "@shopify/flash-list";
 export const Favorites = () => {
-  const renderItem = ({ item }:any) => (
-    <Card item={true} size='l' key={item.id} url={item.url} horizontal={true} style={{ marginTop: 24}} />
+  const [data, setData] = useState<any>([])
+
+  const renderItem = ( {item} :any) => (
+    console.log(typeof item),
+    <Text>{item.artistName}</Text>,
+    
+    <Card  size='l' key={item.artistId} url={item.artistViewUrl} horizontal={true} style={{ marginTop: 24,width:'100%'}} />
+    
+    
   );
   const renditem=( { item }:any) => (
     
       
-        <Card size='l' key={item.id}  url={item.url} horizontal={false} style={{marginTop:24}}/>
+        <Card size='l' key={item.artistId}  url={item.artistViewUrl} horizontal={false} style={{marginTop:24,width:'100%'}}/>
       
     
   )
-  return (
-    <ScrollView>
+  const fetchSongs =async () => {
+    const response: Response = await fetch('https://itunes.apple.com/search?term=eminem&entity=song');
+    const result = await response.json();
+    setData(result.results);
+   
+    
+   
+  }
 
-<View>
+  useEffect(() => {
+    fetchSongs()
+  //  console.log(data);
+   
+    
+    
+  }, [])
+  return (
+    <ScrollView >
+
+<View style={{minWidth:'100%',minHeight:'100%'}}>
       <Header  left={<Left/>}/>
   <View style={{padding:20}}>
   <Card horizontal={true} size='l' 
@@ -32,34 +55,36 @@ export const Favorites = () => {
   </View>
 
 
-  <Text numberOfLines={1} style={styles.title}>Favourite Album</Text>
 
-{/* <ScrollView horizontal contentContainerStyle={{gap:9,paddingHorizontal:20}}>
-{
-  Data.map((item)=>(
-    <Card size='l' key={item.id}  url={item.url} horizontal={true} style={{marginTop:24}}/>
-  ))
-}
-</ScrollView> */}
-<FlashList renderItem={renditem} data={Data} estimatedItemSize={50} horizontal={true}/>
+
+
+{/* <View  style={{height: '100%', width: '100%' }}> 
+ <Text numberOfLines={1} style={styles.title}>Favourite Album</Text>
+<FlashList renderItem={renditem} data={data} estimatedItemSize={100} style={{ flex: 1 }} horizontal={true}/>
+</View> */}
+
+
 
   <Text numberOfLines={1} style={[styles.title,{marginTop:44}]}>Favourite Music</Text>
     </View>
 
 
-    <View style={{width:'100%',height:'100%'}}>
+    <View style={{width:'100%',height:'100%',borderWidth:5,borderColor:'white'}}>
     <FlashList
-      data={Data}
-      estimatedItemSize={100}
+      data={data}
+      estimatedItemSize={200}
       renderItem={renderItem}
       numColumns={3}
-      keyExtractor={item => item.id.toString()} 
       horizontal={false}
       scrollEnabled={true}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{paddingHorizontal:20}}
     />
     </View>
+
+
+
+
 
 
     </ScrollView>

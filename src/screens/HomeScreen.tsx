@@ -1,5 +1,5 @@
 import { ScrollView, StatusBar, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View,Alert,Modal } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar } from '../components/Avatar'
 import RingVector from '../../assets/vectors/Ring.svg'
 import { Colors } from '../../assets/colors/colors'
@@ -24,8 +24,19 @@ export const HomeScreen = () => {
      
     ]);
     const [modalVisible, setModalVisible] = useState(false);
-   
+   const [data, setData] = useState<any>([])
+   const fetchSongs =async () => {
+     const response: Response = await fetch('https://itunes.apple.com/search?term=eminem&entity=song');
+     const result = await response.json();
+     setData(result.results);
     
+   }
+    useEffect(() => {
+      fetchSongs()
+     
+      
+      
+    }, [])
   return (
   <View>
   <ScrollView indicatorStyle="white" showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps="handled" style={{ paddingHorizontal:20}} >
@@ -55,17 +66,23 @@ export const HomeScreen = () => {
 <Text numberOfLines={2} style={[styles.title,{marginTop:44,fontSize:22}]}>Resent Musics</Text>
 
 <ScrollView horizontal showsHorizontalScrollIndicator={false} >
+
+
 {
-  Data.map((item)=>(
-    <Card  key={item.id} title={item.title} url={item.url} horizontal={false} size='m' />
+  data.map((item:any)=>(
+    <Card  key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={false} size='m' />
   ))
 }
+
+
 </ScrollView>
 <Text style={styles.titleRecommend}>Recommend for you</Text>
 
+
+
 {
-  Data.map((item)=>(
-    <Card key={item.id} title={item.title} url={item.url} horizontal={true} size='s' content={item.content} desc={item.desc} />
+  data.map((item:any)=>(
+    <Card key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={true} size='s' content={item.collectionCensoredName} desc={item.trackCensoredName} />
   ))
 }
 <View>
