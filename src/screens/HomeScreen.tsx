@@ -11,7 +11,7 @@ import { Data } from '../../assets/Data'
 import { Navbar } from '../components/Navbar'
 import { Header } from '../components/Header'
 
-export const HomeScreen = () => {
+export const HomeScreen: React.FC = () => {
   
   const createButtonAlert = () =>
     Alert.alert('Notification', 'Notification working', [

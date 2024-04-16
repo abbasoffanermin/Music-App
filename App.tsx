@@ -8,6 +8,7 @@ import {HomeScreen} from './src/screens/HomeScreen';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Music } from './src/screens/Music';
 import { Favorites } from './src/screens/Favorites';
+import Router from './src/router/router';
 
 export default function App() {
   const [fontsLoaded, fontError] = useFonts({
@@ -28,13 +29,8 @@ export default function App() {
     <View style={styles.container}>
      <SafeAreaProvider>
       <SafeAreaView onLayout={onLayoutRootView}> 
-        
-        {/* <HomeScreen/> */}
-        
-        
-        {/* <Music/> */}
-        <Favorites/>
-        
+       
+        <Router/>
         </SafeAreaView>
      </SafeAreaProvider>
       <StatusBar style="light" />
