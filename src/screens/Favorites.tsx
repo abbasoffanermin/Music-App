@@ -70,20 +70,20 @@ export const Favorites = () => {
         <Text numberOfLines={1} style={[styles.title, { marginTop: 44 }]}>Favourite Music</Text>
       </View>
       
-      <View style={{ height: 100, flexGrow: 1 }}>
+      {/* <View style={{ height: 100, flexGrow: 1 }}> */}
       
-          <FlashList
+          <FlatList
           data={data}
-          estimatedItemSize={200}
+          // estimatedItemSize={200}
           renderItem={renderItem}
-          numColumns={3}
+          // numColumns={3}
           horizontal={false}
           scrollEnabled={true}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ paddingHorizontal: 20 }}
+          // contentContainerStyle={{ paddingHorizontal: 20 }}
         />
       
-      </View>
+      {/* </View> */}
 
 
       

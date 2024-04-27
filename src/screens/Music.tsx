@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 import { Header } from '../components/Header'
 import  Left  from '../../assets/vectors/left.svg'
@@ -12,19 +12,25 @@ import Repeat  from '../../assets/vectors/Repeat.svg'
 import SkipBack  from '../../assets/vectors/Skip-back.svg'
 import SkipForward  from '../../assets/vectors/Skip-forward.svg'
 import { Colors } from '../../assets/colors/colors'
-export const Music = () => {
+
+export const Music = ({navigation,route}:any) => {
   const [play, setPlay] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  console.log( route.params);
   
   const oncontroller = () => {
     setPlay(!play)
   }
+  
  
   return (
-    <View style={styles.container}>
-     <Header title='Ophelia by Steven' left={<Left/>} right={<Heart />} />
+    <View>
+     {route!==undefined? <View style={styles.container}>
+   
+   <Header title={route.params.artistName} left={<Left onPress={()=>{navigation.goBack()}}/>} right={<Heart />} />
      <Card style={styles.card} horizontal={false} size='max' 
-     title='Ophelia'
-    content='Ophelia by Steven Steven Price' url='https://img.freepik.com/free-photo/texture-treble-clef-dark-background-isolated-generative-ai_169016-29581.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1712448000&semt=sph'
+     title={route.params.artistName}
+    content={route.params.trackName} url={route.params.artworkUrl100}
 />
     <ProgressBar time={150} currentTime={90} />
  
@@ -40,8 +46,9 @@ export const Music = () => {
 
 
 
-
+    </View> : <ActivityIndicator size="large" color={Colors.primary} style={{marginTop:400}}/>}
     </View>
+    
   )
 }
 

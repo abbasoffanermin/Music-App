@@ -28,11 +28,12 @@ export default function App() {
   return (
     <View style={styles.container}>
      <SafeAreaProvider>
-      <SafeAreaView onLayout={onLayoutRootView}> 
+     
        
         <Router/>
-        </SafeAreaView>
-     </SafeAreaProvider>
+      
+        
+      </SafeAreaProvider>
       <StatusBar style="light" />
     </View>
   );
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bg,
     paddingHorizontal: 17,
-  
+  paddingVertical: 20
   },
 
 });

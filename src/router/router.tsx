@@ -6,16 +6,21 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { Favorites } from '../screens/Favorites';
 import { Music } from '../screens/Music';
 import Test from '../screens/Test';
+import { Routers } from './Routers';
+import { Colors } from '../../assets/colors/colors';
+import { MainNavigationConfig } from '../configs/navigation.config';
+import TabRouter from './Tab.Router';
+
 const Stacks = createNativeStackNavigator();
-const Router: React.FC = () => {
+const Router = () => {
     return (
         
         <NavigationContainer>
-            <Stacks.Navigator >
-                {/* <Stack.Screen name='Test' component={Test}/> */}
-                <Stacks.Screen name='HomeScreen' component={HomeScreen} />
-                {/* <Stack.Screen name='FavoritesScreen' component={Favorites} /> */}
-                <Stacks.Screen name='MusicScreen'   component={Music}  />
+            <Stacks.Navigator screenOptions={MainNavigationConfig} >
+               
+                <Stacks.Screen name={Routers.Tab} component={TabRouter} />
+                {/* <Stacks.Screen name={Routers.Favorites} component={Favorites} />
+                <Stacks.Screen name={ Routers.Music}  component={Music}  /> */}
             </Stacks.Navigator>
         </NavigationContainer>
     )
@@ -24,4 +29,3 @@ const Router: React.FC = () => {
 
 export default Router
 
-const styles = StyleSheet.create({})

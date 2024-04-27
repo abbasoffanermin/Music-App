@@ -1,4 +1,4 @@
-import { ScrollView, StatusBar, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View,Alert,Modal } from 'react-native'
+import { ScrollView, StatusBar, StyleSheet, Text, TextInput, Touchable, TouchableOpacity, View,Alert,Modal, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Avatar } from '../components/Avatar'
 import RingVector from '../../assets/vectors/Ring.svg'
@@ -8,11 +8,16 @@ import { Input } from '../components/Input'
 import  Search  from '../../assets/vectors/Search.svg'
 import { Card } from '../components/Card'
 import { Data } from '../../assets/Data'
-import { Navbar } from '../components/Navbar'
-import { Header } from '../components/Header'
 
-export const HomeScreen: React.FC = () => {
-  
+import { Header } from '../components/Header'
+import {Routers} from '../router/Routers'
+import { ENDPOINTS } from '../services/Endpoints'
+import { FlashList } from '@shopify/flash-list'
+
+export const HomeScreen: React.FC = ({navigation}:any) => {
+  const renditem = ({ item }: any) => {
+    
+  }
   const createButtonAlert = () =>
     Alert.alert('Notification', 'Notification working', [
       {
@@ -25,10 +30,20 @@ export const HomeScreen: React.FC = () => {
     ]);
     const [modalVisible, setModalVisible] = useState(false);
    const [data, setData] = useState<any>([])
+   const [loading, setLoading] = useState(false);
    const fetchSongs =async () => {
-     const response: Response = await fetch('https://itunes.apple.com/search?term=eminem&entity=song');
-     const result = await response.json();
-     setData(result.results);
+     setLoading(true);
+    try {
+      const response: Response = await fetch(ENDPOINTS.tracks);
+      const result = await response.json();
+      setData(result.results);
+    } catch (error) {
+      console.log(error);
+      
+    }
+    finally{
+      setLoading(false);
+    }
     
    }
     useEffect(() => {
@@ -38,7 +53,9 @@ export const HomeScreen: React.FC = () => {
       
     }, [])
   return (
+    
   <View>
+    { loading ? <ActivityIndicator size="large" color={Colors.primary} style={{marginTop:400}}/> :
   <ScrollView indicatorStyle="white" showsVerticalScrollIndicator={false}  keyboardShouldPersistTaps="handled" style={{ paddingHorizontal:20}} >
        <View style={styles.container}>
        <Header  right={<RingVector onPress={createButtonAlert} style={{width:30,height:30,marginTop:10}} color={Colors.grey} />
@@ -70,7 +87,7 @@ export const HomeScreen: React.FC = () => {
 
 {
   data.map((item:any)=>(
-    <Card  key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={false} size='m' />
+    <Card  key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={false} size='m' onPress={()=>{navigation.navigate(Routers.Music,item)}}/>
   ))
 }
 
@@ -81,17 +98,17 @@ export const HomeScreen: React.FC = () => {
 
 
 {
-  data.map((item:any)=>(
-    <Card key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={true} size='s' content={item.collectionCensoredName} desc={item.trackCensoredName} />
-  ))
+ data.map((item:any)=>(
+  <Card key={item.trackId} title={item.artistName} url={item.artworkUrl100} horizontal={true} size='s' content={item.collectionCensoredName} desc={item.trackCensoredName} onPress={()=>{navigation.navigate(Routers.Music,item)}} />
+))
 }
 <View>
-  <Navbar/>
+
 </View>
    
  
     </ScrollView>
-
+}
 
 
 

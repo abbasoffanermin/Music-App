@@ -1,4 +1,4 @@
-import { Image, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { Image, Pressable, StyleProp, StyleSheet, Text, Touchable, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React from 'react'
 import { Colors } from '../../assets/colors/colors'
 
@@ -11,13 +11,14 @@ interface ICard{
     horizontal:boolean,
     size:'s'|'m'|'l'|'max',
     item?:boolean,
+    onPress?: () => void;
     style?:StyleProp<ViewStyle>
 }
-export const Card:React.FC<ICard> = ({title,url,content,desc,horizontal=false,size,style,email=null,item=false}) => {
+export const Card:React.FC<ICard> = ({title,url,content,desc,horizontal=false,size,style,email=null,item=false, onPress}) => {
 
   return (
     
-   <TouchableOpacity >
+   <Pressable onPress={onPress} >
   
  
   <View  style={[horizontal?styles.horizontal:styles.root,size=='s' ?{marginBottom:16,gap:15,alignItems:'center'}:null,style]}>
@@ -38,7 +39,7 @@ export const Card:React.FC<ICard> = ({title,url,content,desc,horizontal=false,si
 
 
    
-   </TouchableOpacity>
+   </Pressable>
   )
 }
 
